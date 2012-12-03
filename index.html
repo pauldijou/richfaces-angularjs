@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <title>RichFaces AngularJS</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="demo/vendor/richfaces/rf-bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="demo/vendor/prism/prism.css"/>
+    <link rel="stylesheet" href="demo/css/richfaces-angularjs.css"/>
+    <link rel="stylesheet" href="demo/css/demo.css"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+</head>
+<body data-ng-app="richfacesApp" data-ng-controller="AppCtrl">
+
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser
+    today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better
+    experience this site.</p>
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="demo/vendor/es5-shim.min.js"></script>
+<script src="demo/vendor/json3.min.js"></script>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<navbar position="fixed-top" collapse="true" brand="RichFaces AngularJS" brand-href="#!/" model="navbarModel">
+    <ul class="nav">
+        <li><a data-ng-href="#!/">Home</a></li>
+
+        <li class="dropdown" data-ng-repeat="(group, directives) in exampleGroups">
+            <a href="#" class="dropdown-toggle"
+               data-toggle="dropdown">{{group}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-submenu" data-ng-repeat="directive in directives">
+                    <a data-ng-href="#!/demo/{{directive}}">{{directive}}</a>
+                    <ul class="dropdown-menu">
+                        <li data-ng-repeat="demo in examples[directive]">
+                            <a data-ng-href="#!/demo/{{directive}}/{{demo}}">{{demo}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul class="nav pull-right">
+        <li>
+        </li>
+    </ul>
+</navbar>
+
+<div class="container-fluid">
+
+    <div class="row-fluid">
+        <div data-ng-view="view"></div>
+    </div>
+
+    <footer>
+        By <a href="http://pauldijou.fr">Paul Dijou</a>
+    </footer>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
+<script src="demo/vendor/underscore/underscore.js" data-manual="manual"></script>
+<script src="demo/js/richfaces-angularjs.js"></script>
+<script src="demo/vendor/prism/prism.js" data-manual="manual"></script>
+<script src="demo/vendor/richfaces/rf-bootstrap-js.js"></script>
+<script src="demo/vendor/richfaces/orderingList.js"></script>
+<script src="demo/vendor/richfaces/pickList.js"></script>
+<script src="demo/vendor/richfaces/picklist-js-glue.js"></script>
+
+<script src="demo/js/app.js"></script>
+<script src="demo/js/controllers.js"></script>
+</body>
+</html>
