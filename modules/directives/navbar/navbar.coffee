@@ -1,4 +1,4 @@
-angular.module('richfaces.directives').directive 'navbar', ['richfaces.config', (config) ->
+angular.module('richangular.directives').directive 'richNavbar', ['richangular.config', (config) ->
   restrict: 'E'
   transclude: true
   replace: true

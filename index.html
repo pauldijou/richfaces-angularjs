@@ -33,32 +33,7 @@
 <script src="demo/vendor/json3.min.js"></script>
 <![endif]-->
 
-<!-- Add your site or application content here -->
-<navbar position="fixed-top" collapse="true" brand="RichFaces AngularJS" brand-href="#!/" model="navbarModel">
-    <ul class="nav">
-        <li><a data-ng-href="#!/">Home</a></li>
-
-        <li class="dropdown" data-ng-repeat="(group, directives) in exampleGroups">
-            <a href="#" class="dropdown-toggle"
-               data-toggle="dropdown">{{group}} <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li class="dropdown-submenu" data-ng-repeat="directive in directives">
-                    <a data-ng-href="#!/demo/{{directive}}">{{directive}}</a>
-                    <ul class="dropdown-menu">
-                        <li data-ng-repeat="demo in examples[directive]">
-                            <a data-ng-href="#!/demo/{{directive}}/{{demo}}">{{demo}}</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-
-    <ul class="nav pull-right">
-        <li>
-        </li>
-    </ul>
-</navbar>
+<rich-navbar position="fixed-top" collapse="true" brand="RichAngular" brand-href="#!/" model="navbarModel"></rich-navbar>
 
 <div class="container-fluid">
 
@@ -84,5 +59,10 @@
 
 <script src="demo/js/app.js"></script>
 <script src="demo/js/controllers.js"></script>
+<!--<script src="demo/js/services.js"></script>-->
+<!--<script src="demo/js/directives.js"></script>-->
+
+<script>__reloadServerUrl="ws://localhost:8001";</script>
+<script type="text/javascript" src="//localhost:8001/__reload/client.js"></script>
 </body>
 </html>

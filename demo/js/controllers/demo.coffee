@@ -4,9 +4,48 @@ richfacesApp.controller 'DemoCtrl',['$scope', '$routeParams', ($scope, $routePar
   $scope.codeCache = {}
   $scope.sourceCache = {}
 
+
+  $scope.languages = [
+    'markup'
+    'css'
+    'javascript'
+    'java'
+  ]
+  $scope.severities = [
+    'primary'
+    'success'
+    'warning'
+    'error'
+    'danger'
+    'important'
+    'info'
+    'inverse'
+  ]
+  $scope.scales = [
+    'mini'
+    'small'
+    'medium'
+    'large'
+    'xlarge'
+    'xxlarge'
+  ]
+
   # Generic variables which can be used by any demo
-  $scope.list1 = ["Elem1", "Elem2", "Elem3"]
-  $scope.list2 = []
+  $scope.data =
+    language: "markup"
+    severity: ""
+    scale: ""
+
+    list1: ["Elem1", "Elem2", "Elem3"]
+    list2: []
+
+    input1: "value1"
+    input2: "value2"
+    input3: "value3"
+
+    num1: 42
+    num2: 256
+    num3: 1337
 
   $scope.isDemo = () ->
     !!$scope.demoName

@@ -1,4 +1,4 @@
-var richfacesApp = angular.module('richfacesApp', ['richfaces'])
+var richfacesApp = angular.module('richfacesApp', ['richangular'])
     .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {

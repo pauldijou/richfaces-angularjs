@@ -11,12 +11,17 @@
         </ul>
     </div>
 
-    <h2>{{directiveName}} <span data-ng-show="isDemo()" class="ng-cloak">- {{demoName}}</span>aze</h2>
+    <h2>{{directiveName}} <span data-ng-show="isDemo()" class="ng-cloak">- {{demoName}}</span></h2>
 
     <div data-ng-include="getContentUrl()"></div>
 
     <div class="ng-cloak" data-ng-show="isDemo()">
-        <codeblock src="{{code}}"></codeblock>
+        <rich-codeblock src="{{code}}" class="test2" style="{{input1}}" language="{{data.language}}"></rich-codeblock>
+
+        <label>
+            Codeblock language:
+            <select data-ng-model="data.language" data-ng-options="lang for lang in languages"></select>
+        </label>
     </div>
 </div>
 

@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-coffee');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-reload');
 
   // Project configuration.
   grunt.initConfig({
@@ -39,6 +40,14 @@ module.exports = function(grunt) {
       democontrollers: {
         src: ['<banner:meta.banner>', '<%= demodir %>/js/controllers/*.js' ],
         dest: '<%= demodir %>/js/controllers.js'
+      },
+      demoservices: {
+        src: ['<banner:meta.banner>', '<%= demodir %>/js/services/*.js' ],
+        dest: '<%= demodir %>/js/services.js'
+      },
+      demodirectives: {
+        src: ['<banner:meta.banner>', '<%= demodir %>/js/directives/*.js' ],
+        dest: '<%= demodir %>/js/directives.js'
       }
     },
     recess: {
@@ -69,10 +78,6 @@ module.exports = function(grunt) {
         src : [ '<banner:meta.banner>', '<config:concat.dist.dest>' ],
         dest : '<%= distdir %>/<%= filename %>.min.js'
       }
-    },
-    watch : {
-      files : ['index.html', 'grunt.js', 'core/*', 'modules/**/*', 'demo/**/*'],
-      tasks : 'dist'
     },
     lint : {
       files : [ 'grunt.js', '<%= distdir %>/<%= filename %>.js' ]
@@ -123,16 +128,19 @@ module.exports = function(grunt) {
         }
       }
     },
+    reload: {
+
+    },
+    watch : {
+      files : ['index.html', 'grunt.js', 'core/*', 'modules/**/*', 'demo/**/*'],
+      tasks : 'dist reload'
+    },
     server: {
       port: 8000,
       base: '.'
     }
   });
 
-  // Default task.
-  grunt.registerTask('default', 'dist');
-  
+  grunt.registerTask('default', 'dist server reload watch');
   grunt.registerTask('dist', 'coffee recess concat lint min copy');
-  
-  grunt.registerTask("run", "dist server watch");
 };

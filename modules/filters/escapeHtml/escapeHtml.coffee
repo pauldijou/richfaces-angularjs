@@ -1,4 +1,4 @@
-angular.module('richfaces.filters').filter 'escapeHtml', ['richfaces.config', (config) ->
+angular.module('richangular.filters').filter 'escapeHtml', ['richangular.config', (config) ->
   (input) ->
     input
     .replace(/&/g, "&amp;")

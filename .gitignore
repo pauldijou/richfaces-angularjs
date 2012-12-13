@@ -1,6 +1,9 @@
 node_modules
 tmp
 *.coffee.js
+demo/js/*.js
+!demo/js/app.js
+
 .project
 .settings
 .idea

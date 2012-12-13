@@ -1,5 +1,5 @@
-angular.module('richfaces.config', []).value('richfaces.config', {})
-angular.module 'richfaces.services',['richfaces.config']
-angular.module 'richfaces.directives',['richfaces.config', 'richfaces.services']
-angular.module 'richfaces.filters',['richfaces.config', 'richfaces.services']
-angular.module 'richfaces',['richfaces.config', 'richfaces.directives', 'richfaces.filters', 'richfaces.services']
+angular.module('richangular.config', []).value('richangular.config', {})
+angular.module 'richangular.services',['richangular.config']
+angular.module 'richangular.directives',['richangular.config', 'richangular.services']
+angular.module 'richangular.filters',['richangular.config', 'richangular.services']
+angular.module 'richangular',['richangular.config', 'richangular.directives', 'richangular.filters', 'richangular.services']

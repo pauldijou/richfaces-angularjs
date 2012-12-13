@@ -1,4 +1,4 @@
-/*! richfaces-angularjs - v0.0.1 - 2012-12-03
+/*! richfaces-angularjs - v0.0.1 - 2012-12-13
 * TODO
 * Copyright (c) 2012 ; Licensed  */
 
@@ -6,12 +6,12 @@
 richfacesApp.controller('AppCtrl', [
   '$rootScope', '$scope', function($rootScope, $scope) {
     $scope.examples = {
-      badge: ['basic', 'severity', 'style'],
-      label: ['basic', 'severity', 'style'],
-      modal: ['basic', 'severity', 'style']
+      badge: ['basic'],
+      pickList: ['basic']
     };
     $scope.exampleGroups = {
-      Output: ['label', 'badge', 'modal']
+      Output: ['badge'],
+      Intput: ['pickList']
     };
     $scope.navbarModel = [
       {
@@ -41,6 +41,9 @@ richfacesApp.controller('AppCtrl', [
               {
                 text: 'Basic',
                 href: '#!/demo/badge/basic'
+              }, {
+                text: 'Editable',
+                href: '#!/demo/badge/editable'
               }
             ]
           }
@@ -72,8 +75,22 @@ richfacesApp.controller('DemoCtrl', [
     $scope.demoName = $routeParams.demoName;
     $scope.codeCache = {};
     $scope.sourceCache = {};
-    $scope.list1 = ["Elem1", "Elem2", "Elem3"];
-    $scope.list2 = [];
+    $scope.languages = ['markup', 'css', 'javascript', 'java'];
+    $scope.severities = ['primary', 'success', 'warning', 'error', 'danger', 'important', 'info', 'inverse'];
+    $scope.scales = ['mini', 'small', 'medium', 'large', 'xlarge', 'xxlarge'];
+    $scope.data = {
+      language: "markup",
+      severity: "",
+      scale: "",
+      list1: ["Elem1", "Elem2", "Elem3"],
+      list2: [],
+      input1: "value1",
+      input2: "value2",
+      input3: "value3",
+      num1: 42,
+      num2: 256,
+      num3: 1337
+    };
     $scope.isDemo = function() {
       return !!$scope.demoName;
     };
@@ -149,4 +166,10 @@ richfacesApp.controller('DemoCtrl', [
 ]);
 
 
-richfacesApp.controller('HomeCtrl', [function() {}]);
+richfacesApp.controller('HomeCtrl', [
+  '$scope', function($scope) {
+    $scope.param1 = "ctrlValue1";
+    $scope.param2 = "ctrlValue2";
+    return $scope.param3 = "ctrlValue3";
+  }
+]);

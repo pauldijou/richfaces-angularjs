@@ -5,7 +5,7 @@
 # @attribute(name: "target", description: "the right list")
 # @attribute(name: "class", description: "assign CSS classes to the element")
 # @attribute(name: "style", description: "assign CSS styles to the element")
-angular.module('richfaces.directives').directive 'pickList', ['richfaces.config', (config) ->
+angular.module('richangular.directives').directive 'richPickList', ['richangular.config', (config) ->
   restrict: 'E'
   replace: true
   scope:

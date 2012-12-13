@@ -1,4 +1,4 @@
-angular.module('richfaces.services').service 'html',[() ->
+angular.module('richangular.services').service 'html',[() ->
   {
     escape: (string) ->
       string.replace(/&/g, "&amp;")

@@ -1,21 +1,21 @@
-/*! richfaces-angularjs - v0.0.1 - 2012-12-03
+/*! richfaces-angularjs - v0.0.1 - 2012-12-13
 * TODO
 * Copyright (c) 2012 ; Licensed  */
 
 
-angular.module('richfaces.config', []).value('richfaces.config', {});
+angular.module('richangular.config', []).value('richangular.config', {});
 
-angular.module('richfaces.services', ['richfaces.config']);
+angular.module('richangular.services', ['richangular.config']);
 
-angular.module('richfaces.directives', ['richfaces.config', 'richfaces.services']);
+angular.module('richangular.directives', ['richangular.config', 'richangular.services']);
 
-angular.module('richfaces.filters', ['richfaces.config', 'richfaces.services']);
+angular.module('richangular.filters', ['richangular.config', 'richangular.services']);
 
-angular.module('richfaces', ['richfaces.config', 'richfaces.directives', 'richfaces.filters', 'richfaces.services']);
+angular.module('richangular', ['richangular.config', 'richangular.directives', 'richangular.filters', 'richangular.services']);
 
 
-angular.module('richfaces.directives').directive('pickList', [
-  'richfaces.config', function(config) {
+angular.module('richangular.directives').directive('richPickList', [
+  'richangular.config', function(config) {
     return {
       restrict: 'E',
       replace: true,
@@ -53,8 +53,8 @@ angular.module('richfaces.directives').directive('pickList', [
 ]);
 
 
-angular.module('richfaces.directives').directive('navbar', [
-  'richfaces.config', function(config) {
+angular.module('richangular.directives').directive('richNavbar', [
+  'richangular.config', function(config) {
     return {
       restrict: 'E',
       transclude: true,
@@ -143,69 +143,88 @@ angular.module('richfaces.directives').directive('navbar', [
 ]);
 
 
-angular.module('richfaces.directives').directive('badge', [
-  'richfaces.config', function(config) {
+angular.module('richangular.directives').directive('richControlGroup', [
+  'richangular.config', function(config) {
     return {
       restrict: 'E',
       transclude: true,
       replace: true,
       scope: {
+        label: '@',
+        "for": '@',
         style: '@',
-        "class": '@',
-        severity: '@'
+        "class": '@'
       },
-      link: function(scope, elem, attrs) {
-        scope.styles = attrs.style;
-        scope.classes = 'badge';
-        if (attrs.severity) {
-          scope.classes += ' badge-' + attrs.severity;
-        }
-        if (attrs["class"]) {
-          return scope.classes += ' ' + attrs["class"];
-        }
-      },
-      template: '<span data-ng-class="classes" data-ng-style="styles" data-ng-transclude="transclude"></span>'
+      link: function(scope, elem, attrs) {},
+      template: '<div class="control-group" data-ng-class="class" data-ng-style="style"><label class="control-label" for="{{for}}">{{label}}</label><div class="controls" data-ng-transclude="transclude"></div></div>'
     };
   }
 ]);
 
 
-angular.module('richfaces.directives').directive('codeblock', [
-  'richfaces.config', 'html', function(config, html) {
+angular.module('richangular.directives').directive('richBadge', [
+  'richangular.config', function(config) {
+    return {
+      restrict: 'E',
+      transclude: true,
+      replace: true,
+      scope: {
+        severity: '@',
+        style: '@',
+        "class": '@'
+      },
+      link: function(scope, elem, attrs) {
+        return attrs.$observe('severity', function(value) {
+          elem.removeClass(scope.severityClass);
+          if (value) {
+            value = ' badge-' + value;
+          }
+          scope.severityClass = value;
+          return elem.addClass(scope.severityClass);
+        });
+      },
+      template: '<span class="badge" data-ng-class="class" data-ng-style="style" data-ng-transclude="transclude"></span>'
+    };
+  }
+]);
+
+
+angular.module('richangular.directives').directive('richCodeblock', [
+  'richangular.config', 'html', function(config, html) {
     return {
       restrict: 'E',
       replace: true,
+      transclude: true,
+      scope: {
+        language: '@',
+        src: '@',
+        style: '@',
+        "class": '@'
+      },
       link: function(scope, elem, attrs) {
         var codeElem;
-        console.log(elem);
         codeElem = elem.children('code');
         codeElem.attr("class", "language-markup");
-        attrs.$observe('style', function(value) {
-          return elem.attr('style', value);
-        });
-        attrs.$observe('class', function(value) {
-          return elem.attr('class', value);
-        });
         attrs.$observe('language', function(value) {
-          console.log("lang: " + value);
           if (value) {
             codeElem.attr("class", "language-" + value);
             return Prism.highlightElement(codeElem[0]);
           }
         });
         attrs.$observe('src', function(value) {
-          codeElem.children().remove();
-          codeElem.append(html.escape(value));
+          if (value) {
+            codeElem.html(html.escape(value));
+          }
           return Prism.highlightElement(codeElem[0]);
         });
       },
-      template: '<pre><code></code></pre>'
+      template: '<pre data-ng-class="class" data-ng-style="style"><code data-ng-transclude="transclude"></code></pre>'
     };
   }
 ]);
 
 
-angular.module('richfaces.services').service('html', [
+angular.module('richangular.services').service('html', [
   function() {
     return {
       escape: function(string) {
@@ -216,8 +235,8 @@ angular.module('richfaces.services').service('html', [
 ]);
 
 
-angular.module('richfaces.filters').filter('escapeHtml', [
-  'richfaces.config', function(config) {
+angular.module('richangular.filters').filter('escapeHtml', [
+  'richangular.config', function(config) {
     return function(input) {
       return input.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     };
