@@ -1,7 +1,7 @@
 {
   "author": "TODO",
-  "name": "richfaces-angularjs",
-  "description": "RichFaces AngularJS - When JBoss widgets land on Google JS framework",
+  "name": "richangular",
+  "description": "RichAngular - When JBoss widgets land on Google JS framework",
   "version": "0.0.1",
   "homepage": "TODO",
   "repository": {
@@ -15,6 +15,7 @@
   "devDependencies": {
     "grunt-recess": "~0.1.3",
     "grunt-coffee": "~0.0.6",
-    "grunt-contrib-copy": "~0.3.2"
+    "grunt-contrib-copy": "~0.3.2",
+    "grunt-reload": "~0.2.0"
   }
 }

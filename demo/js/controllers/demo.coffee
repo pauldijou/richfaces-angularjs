@@ -1,4 +1,4 @@
-richfacesApp.controller 'DemoCtrl',['$scope', '$routeParams', ($scope, $routeParams) ->
+richApp.controller 'DemoCtrl',['$scope', '$routeParams', ($scope, $routeParams) ->
   $scope.directiveName = $routeParams.directiveName
   $scope.demoName = $routeParams.demoName
   $scope.codeCache = {}

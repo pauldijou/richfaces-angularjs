@@ -1,18 +1,10 @@
-/*! richfaces-angularjs - v0.0.1 - 2012-12-13
+/*! richangular - v0.0.1 - 2012-12-13
 * TODO
 * Copyright (c) 2012 ; Licensed  */
 
 
-richfacesApp.controller('AppCtrl', [
+richApp.controller('AppCtrl', [
   '$rootScope', '$scope', function($rootScope, $scope) {
-    $scope.examples = {
-      badge: ['basic'],
-      pickList: ['basic']
-    };
-    $scope.exampleGroups = {
-      Output: ['badge'],
-      Intput: ['pickList']
-    };
     $scope.navbarModel = [
       {
         text: 'Home',
@@ -35,6 +27,15 @@ richfacesApp.controller('AppCtrl', [
         text: 'Output',
         dropdown: [
           {
+            text: 'label',
+            href: '#!/demo/label',
+            dropdown: [
+              {
+                text: 'Basic',
+                href: '#!/demo/label/basic'
+              }
+            ]
+          }, {
             text: 'badge',
             href: '#!/demo/badge',
             dropdown: [
@@ -68,7 +69,7 @@ richfacesApp.controller('AppCtrl', [
 ]);
 
 
-richfacesApp.controller('DemoCtrl', [
+richApp.controller('DemoCtrl', [
   '$scope', '$routeParams', function($scope, $routeParams) {
     var getCode, getSource, loadFile, source;
     $scope.directiveName = $routeParams.directiveName;
@@ -166,10 +167,4 @@ richfacesApp.controller('DemoCtrl', [
 ]);
 
 
-richfacesApp.controller('HomeCtrl', [
-  '$scope', function($scope) {
-    $scope.param1 = "ctrlValue1";
-    $scope.param2 = "ctrlValue2";
-    return $scope.param3 = "ctrlValue3";
-  }
-]);
+richApp.controller('HomeCtrl', ['$scope', function($scope) {}]);

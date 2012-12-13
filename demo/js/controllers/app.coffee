@@ -1,12 +1,4 @@
-richfacesApp.controller 'AppCtrl',['$rootScope', '$scope', ($rootScope, $scope) ->
-  $scope.examples =
-    badge: ['basic']
-    pickList: ['basic']
-
-  $scope.exampleGroups =
-    Output: ['badge']
-    Intput: ['pickList']
-
+richApp.controller 'AppCtrl',['$rootScope', '$scope', ($rootScope, $scope) ->
   $scope.navbarModel = [
     {text: 'Home', href: '#!/'}
     {text: 'Input', dropdown: [
@@ -15,6 +7,9 @@ richfacesApp.controller 'AppCtrl',['$rootScope', '$scope', ($rootScope, $scope) 
       ]}
     ]}
     {text: 'Output', dropdown: [
+      {text: 'label', href: '#!/demo/label', dropdown: [
+        {text: 'Basic', href: '#!/demo/label/basic'}
+      ]},
       {text: 'badge', href: '#!/demo/badge', dropdown: [
         {text: 'Basic', href: '#!/demo/badge/basic'},
         {text: 'Editable', href: '#!/demo/badge/editable'}

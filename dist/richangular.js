@@ -1,4 +1,4 @@
-/*! richfaces-angularjs - v0.0.1 - 2012-12-13
+/*! richangular - v0.0.1 - 2012-12-13
 * TODO
 * Copyright (c) 2012 ; Licensed  */
 
@@ -117,9 +117,9 @@ angular.module('richangular.directives').directive('richNavbar', [
               if (level === 0) {
                 liElem.find('a').attr("data-toggle", "dropdown").append(' <b class="caret"></b>');
               }
-              liElem.append('<ul class="dropdown-menu"></ul>');
+              liElem = liElem.append('<ul class="dropdown-menu"></ul>').find('ul');
               return angular.forEach(link.dropdown, function(link, index) {
-                writeLink(link, index, liElem.find('ul'), level + 1);
+                writeLink(link, index, liElem, level + 1);
               });
             }
           };
@@ -129,9 +129,9 @@ angular.module('richangular.directives').directive('richNavbar', [
                 writeGroup(group, index, container);
               });
             } else {
-              container.append('<ul class="nav"></ul>');
+              container = container.append('<ul class="nav"></ul>').children('ul');
               angular.forEach(scope.model, function(link, index) {
-                writeLink(link, index, container.children('ul'), 0);
+                writeLink(link, index, container, 0);
               });
             }
           }
@@ -157,6 +157,33 @@ angular.module('richangular.directives').directive('richControlGroup', [
       },
       link: function(scope, elem, attrs) {},
       template: '<div class="control-group" data-ng-class="class" data-ng-style="style"><label class="control-label" for="{{for}}">{{label}}</label><div class="controls" data-ng-transclude="transclude"></div></div>'
+    };
+  }
+]);
+
+
+angular.module('richangular.directives').directive('richLabel', [
+  'richangular.config', function(config) {
+    return {
+      restrict: 'E',
+      transclude: true,
+      replace: true,
+      scope: {
+        severity: '@',
+        style: '@',
+        "class": '@'
+      },
+      link: function(scope, elem, attrs) {
+        return attrs.$observe('severity', function(value) {
+          elem.removeClass(scope.severityClass);
+          if (value) {
+            value = ' label-' + value;
+          }
+          scope.severityClass = value;
+          return elem.addClass(scope.severityClass);
+        });
+      },
+      template: '<span class="label" data-ng-class="class" data-ng-style="style" data-ng-transclude="transclude"></span>'
     };
   }
 ]);

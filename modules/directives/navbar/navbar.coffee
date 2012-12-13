@@ -39,16 +39,16 @@ angular.module('richangular.directives').directive 'richNavbar', ['richangular.c
         if link.dropdown
           if level == 0 then liElem.addClass "dropdown" else liElem.addClass "dropdown-submenu"
           liElem.find('a').attr("data-toggle", "dropdown").append(' <b class="caret"></b>') if level == 0
-          liElem.append('<ul class="dropdown-menu"></ul>')
-          angular.forEach(link.dropdown, (link, index) -> writeLink(link, index, liElem.find('ul'), level+1); return)
+          liElem = liElem.append('<ul class="dropdown-menu"></ul>').find('ul')
+          angular.forEach(link.dropdown, (link, index) -> writeLink(link, index, liElem, level+1); return)
 
 
       if scope.model
         if(scope.model[0].links)
           angular.forEach(scope.model, (group, index) -> writeGroup(group, index, container); return)
         else
-          container.append('<ul class="nav"></ul>')
-          angular.forEach(scope.model, (link, index) -> writeLink(link, index, container.children('ul'), 0); return)
+          container = container.append('<ul class="nav"></ul>').children('ul')
+          angular.forEach(scope.model, (link, index) -> writeLink(link, index, container, 0); return)
 
       return
   template: '<div data-ng-class="classes" data-ng-style="styles"><div class="navbar-inner"><div class="container"></div></div></div>'
